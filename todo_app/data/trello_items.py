@@ -6,13 +6,10 @@ from todo_app.data.Item import Item
 def add_item(title):
     print(title)
     """
-    Adds a new item with the specified title to the session.
+    Adds a new item with the specified title to Trello.
 
     Args:
         title: The title of the item.
-
-    Returns:
-        item: The saved item.
     """
     reqUrl = (
         f"https://api.trello.com/1/cards?"
@@ -22,16 +19,15 @@ def add_item(title):
         f"name={title}"
     )
 
-    headersList = {
-    "Accept": "*/*",
-    "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
-    }
-
-    payload = ""
-
-    requests.request("POST", reqUrl, data=payload,  headers=headersList)
+    requests.request("POST", reqUrl)
 
 def get_items():
+    """
+    Fetches all saved items from Trello.
+
+    Returns:
+        list: The list of saved items.
+    """
     reqUrl = (
         f"https://api.trello.com/1/boards/"
         f"{os.getenv('BOARD_ID')}/cards?"
@@ -39,14 +35,7 @@ def get_items():
         f"token={os.getenv('TRELLO_API_TOKEN')}"
     )
 
-    headersList = {
-    "Accept": "*/*",
-    "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
-    }
-
-    payload = ""
-
-    response = requests.request("GET", reqUrl, data=payload,  headers=headersList)
+    response = requests.request("GET", reqUrl)
 
     return [ Item.from_trello_card(item) for item in response.json()]
     
@@ -64,12 +53,4 @@ def mark_item_as_done(card_id):
         f"token={os.getenv('TRELLO_API_TOKEN')}"
     )
 
-    headersList = {
-        "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)"
-    }
-
-    payload = ""
-
-    requests.request("PUT", reqUrl, data=payload, headers=headersList)
-    
+    requests.request("PUT", reqUrl)

@@ -4,7 +4,6 @@ import os
 from todo_app.data.Item import Item
 
 def add_item(title):
-    print(title)
     """
     Adds a new item with the specified title to Trello.
 

@@ -83,3 +83,7 @@ To run tests run `poetry run pytest`
 To run a single test file run `poetry run pytest <path_to_test_file>`
 
 To run a single test run `poetry run pytest -k <test_name>`
+
+## Linting
+
+Run `back .` before a commit to lint the code.

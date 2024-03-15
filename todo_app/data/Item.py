@@ -12,7 +12,9 @@ class Item:
         return cls(
             card["id"],
             card["name"],
-            "Not started"
-            if card["idList"] == os.getenv("NOT_STARTED_LIST_ID")
-            else "Done",
+            (
+                "Not started"
+                if card["idList"] == os.getenv("NOT_STARTED_LIST_ID")
+                else "Done"
+            ),
         )

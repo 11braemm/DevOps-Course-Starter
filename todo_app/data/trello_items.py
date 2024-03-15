@@ -3,6 +3,7 @@ import os
 
 from todo_app.data.Item import Item
 
+
 def add_item(title):
     """
     Adds a new item with the specified title to Trello.
@@ -20,6 +21,7 @@ def add_item(title):
 
     requests.request("POST", reqUrl)
 
+
 def get_items():
     """
     Fetches all saved items from Trello.
@@ -36,8 +38,9 @@ def get_items():
 
     response = requests.request("GET", reqUrl)
 
-    return [ Item.from_trello_card(item) for item in response.json()]
-    
+    return [Item.from_trello_card(item) for item in response.json()]
+
+
 def mark_item_as_done(card_id):
     """
     Marks the Trello card with the specified ID as done by moving it to the "Done" list.

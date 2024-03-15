@@ -75,3 +75,11 @@ Press CTRL+C to quit
  * Debugger PIN: 113-666-066
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Testing
+
+To run tests run `poetry run pytest` 
+
+To run a single test file run `poetry run pytest <path_to_test_file>`
+
+To run a single test run `poetry run pytest -k <test_name>`

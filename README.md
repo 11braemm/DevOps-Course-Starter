@@ -86,4 +86,4 @@ To run a single test run `poetry run pytest -k <test_name>`
 
 ## Linting
 
-Run `back .` before a commit to lint the code.
+Run `poetry run black .` before a commit to lint the code.

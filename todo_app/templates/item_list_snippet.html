@@ -1,0 +1,6 @@
+<span>{{ item.name }}</span>
+{% if item.status == 'Not started' %}
+  <form action="{{ url_for('complete_item', item_id=item.id) }}" method="post" class="complete-form">
+    <input type="submit" value="Complete">
+  </form>
+{% endif %}

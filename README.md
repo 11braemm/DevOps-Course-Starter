@@ -87,3 +87,21 @@ To run a single test run `poetry run pytest -k <test_name>`
 ## Linting
 
 Run `poetry run black .` before a commit to lint the code.
+
+## Run via VM
+
+Run the playbook to install and run the app on a VM using:
+
+`ansible-playbook playbook.yml -i hosts.ini`
+
+The host names of VMs to do this on are specified in `hosts.ini`
+
+This must be run from a control node with ansible installed.
+
+SSH into your chosen control node with `ssh USERNAME@IP-ADDRESS` and copy over the following files 
+
+- `playbook.yml`
+- `hosts.ini`
+- `todoapp.service`
+- `.env.j2`
+

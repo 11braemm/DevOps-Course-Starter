@@ -105,3 +105,20 @@ SSH into your chosen control node with `ssh USERNAME@IP-ADDRESS` and copy over t
 - `todoapp.service`
 - `.env.j2`
 
+## Run via Docker
+
+The app can be run in a production or development Docker container.
+
+# Production
+To run the app in a production container, build the image with the following command:
+    `docker build --target production --tag todo-app:prod .` 
+
+Then run the image with:
+    `docker run --env-file .env --publish 5000:5000 todo-app:prod`
+
+# Development
+To run the app in a development container, build the image with the following command:  
+    `docker build --target development --tag todo-app:dev .` 
+
+Then run the image with:
+    `docker run --env-file .env --publish 5000:5000 --mount "type=bind,source=$(pwd)/todo_app,target=/app/todo_app" todo-app:dev`

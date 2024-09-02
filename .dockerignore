@@ -10,3 +10,4 @@
 .gitpod.yml
 playbook.yml
 hosts.ini
+**/__pycache__

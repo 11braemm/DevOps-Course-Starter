@@ -1,0 +1,13 @@
+.env
+.env.j2
+.env.template
+.env.test
+.gitignore
+.github
+.vscode
+.pytest_chache
+.venv
+.gitpod.yml
+playbook.yml
+hosts.ini
+**/__pycache__

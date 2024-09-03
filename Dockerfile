@@ -20,4 +20,5 @@ CMD ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
 
 # Run tests
 FROM base AS test
+COPY .env.test ./
 ENTRYPOINT poetry run pytest

@@ -1,7 +1,6 @@
 .env
 .env.j2
 .env.template
-.env.test
 .gitignore
 .github
 .vscode

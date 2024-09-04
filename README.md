@@ -142,4 +142,22 @@ There are various architecture diagrams, these can be edited at the following li
 
 - [Context](https://drive.google.com/file/d/18BS3nEtXpjtA20sy34RnllzXHkki3s41/view?usp=sharing)
 - [Container](https://drive.google.com/file/d/1jSqLHqSkewq0LrWeUCb7xt6wbRtAS6l1/view?usp=sharing)
-- [Component](https://drive.google.com/file/d/10fiX0yS5X_fz9KX-pwp16SeswVr5LYOU/view?usp=sharing) 
+- [Component](https://drive.google.com/file/d/10fiX0yS5X_fz9KX-pwp16SeswVr5LYOU/view?usp=sharing)
+
+## Azure Hosting
+
+The container image that is deployed to Azure is hosted on Docker Hub at [emmabragg/todo-app](https://hub.docker.com/repository/docker/emmabragg/todo-app)
+
+The website itself is hosted at https://emmbratodowebapp.azurewebsites.net/
+
+To update the website you will need to run the following commands to build and push the updated container image:
+```bash
+    docker build --target production --tag emmabragg/todo-app .
+    docker push emmabragg/todo-app
+```
+
+To trigger an update we need Azure to pull the new image from Docker Hub.
+
+To do this make a POST request to the webhook.
+
+Its value can be found on the App Service (under the Deployment Centre tab).

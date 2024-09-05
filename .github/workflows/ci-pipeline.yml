@@ -28,6 +28,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     - run: docker build --target production --tag emmabragg/todo-app .
     - run: docker push emmabragg/todo-app
+    - run: curl -dH -X POST ${{ secrets.DEPLOYMENT_WEB_HOOK }}
 
     
 

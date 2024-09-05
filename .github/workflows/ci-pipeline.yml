@@ -26,6 +26,8 @@ jobs:
       with: 
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - run: docker build --target production --tag emmabragg/todo-app .
+    - run: docker push emmabragg/todo-app
 
     
 

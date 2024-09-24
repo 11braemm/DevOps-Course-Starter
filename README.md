@@ -8,8 +8,10 @@ The project uses poetry for Python to create an isolated environment and manage 
 
 ### Poetry installation (Bash)
 
+Note you will need to install Python for this.
+
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+curl -sSL https://install.python-poetry.org | python -
 ```
 
 ### Poetry installation (PowerShell)
@@ -17,6 +19,10 @@ curl -sSL https://install.python-poetry.org | python3 -
 ```powershell
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ```
+
+You will likely then need to add poetry to your PATH, for me it was found at 
+
+`C:\Users\user-name\AppData\Roaming\pypoetry\venv\Scripts`
 
 You can check poetry is installed by running `poetry --version` from a terminal.
 
@@ -122,3 +128,11 @@ To run the app in a development container, build the image with the following co
 
 Then run the image with:
     `docker run --env-file .env --publish 5000:5000 --mount "type=bind,source=$(pwd)/todo_app,target=/app/todo_app" todo-app:dev`
+
+## Architecture Diagrams
+
+There are various architecture diagrams, these can be edited at the following links:
+
+- [Context](https://drive.google.com/file/d/18BS3nEtXpjtA20sy34RnllzXHkki3s41/view?usp=sharing)
+- [Container](https://drive.google.com/file/d/1jSqLHqSkewq0LrWeUCb7xt6wbRtAS6l1/view?usp=sharing)
+- [Component](https://drive.google.com/file/d/10fiX0yS5X_fz9KX-pwp16SeswVr5LYOU/view?usp=sharing) 

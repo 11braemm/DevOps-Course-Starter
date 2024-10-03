@@ -8,13 +8,9 @@ class Item:
         self.status = status
 
     @classmethod
-    def from_trello_card(cls, card):
-        return cls(
-            card["id"],
-            card["name"],
-            (
-                "Not started"
-                if card["idList"] == os.getenv("NOT_STARTED_LIST_ID")
-                else "Done"
-            ),
+    def from_mongo_document(cls, document):
+        return Item(
+            document["_id"],
+            document["description"],
+            document["status"]
         )

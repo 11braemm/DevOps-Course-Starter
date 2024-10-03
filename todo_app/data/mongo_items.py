@@ -1,5 +1,5 @@
-import dotenv
 import os
+import dotenv
 from bson import ObjectId
 import pymongo
 
@@ -30,9 +30,6 @@ def get_items():
         list: The list of saved items.
     """
     mongo_documents = list(collection.find())
-    items = [Item.from_mongo_document(document) for document in mongo_documents]
-    # print(mongo_documents)
-    # print(items[0].name, items[0].status)
     return [Item.from_mongo_document(document) for document in mongo_documents]
 
 

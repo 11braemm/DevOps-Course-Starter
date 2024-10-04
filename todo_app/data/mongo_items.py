@@ -11,6 +11,7 @@ def get_collection():
     """
     Sets up a conection to the MongoDB database and returns the to do collection.
     """
+    
     client = pymongo.MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
     db = client[os.getenv("MONGODB_DATABASE_NAME")]
     return db[os.getenv("MONGODB_COLLECTION_NAME")]

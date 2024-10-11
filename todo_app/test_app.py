@@ -1,7 +1,8 @@
 import os
-import requests
 import pytest
 from dotenv import load_dotenv, find_dotenv
+import mongomock
+import pymongo
 
 from todo_app import app
 
@@ -16,44 +17,26 @@ def client():
     test_app = app.create_app()
 
     # Use the app to create a test_client that can be used in our tests.
-    with test_app.test_client() as client:
-        yield client
+    with mongomock.patch(servers=(('fakemongo.com', 27017),)):
+        test_app = app.create_app()
+        with test_app.test_client() as client:
+            yield client
 
 
-class StubResponse:
-    def __init__(self, fake_response_data):
-        self.fake_response_data = fake_response_data
+def test_index_page(client):
+    # Arrange
+    mongo_client = pymongo.MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
+    db = mongo_client[os.getenv("MONGODB_DATABASE_NAME")]
+    collection = db[os.getenv("MONGODB_COLLECTION_NAME")]
+    test_document = {
+        "description": "Test item",
+        "status": "Not started",
+    }
+    collection.insert_one(test_document)
 
-    def json(self):
-        return self.fake_response_data
-
-
-def stub(_, url, params={}):
-    test_board_id = os.getenv("BOARD_ID")
-    test_key = os.getenv("TRELLO_API_KEY")
-    test_token = os.getenv("TRELLO_API_TOKEN")
-    if (
-        url
-        == f"https://api.trello.com/1/boards/{test_board_id}/cards?key={test_key}&token={test_token}"
-    ):
-        fake_response_data = [
-            {
-                "id": "123abc",
-                "idList": os.getenv("NOT_STARTED_LIST_ID"),
-                "name": "Test card",
-            }
-        ]
-        return StubResponse(fake_response_data)
-
-    raise Exception(f'Integration test did not expect URL "{url}"')
-
-
-def test_index_page(monkeypatch, client):
-    # This replaces any call to requests.get with our own function
-    monkeypatch.setattr(requests, "request", stub)
-
-    # Make a request to our app's index page
+    # Act
     response = client.get("/")
 
+    # Assert
     assert response.status_code == 200
-    assert "Test card" in response.data.decode()
+    assert "Test item" in response.data.decode()

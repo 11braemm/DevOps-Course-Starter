@@ -44,23 +44,11 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
 
-## Trello API setup 
-- Create a Trello account
-- Create an API Key for Trello
-    - To do this you’ll first need to create a Trello Power Up [(from this page)](https://trello.com/power-ups/admin)
-    - After creating a Trello Power Up you’ll be given the option to generate a new API key
-- Create a API Token for Trello.
-    - This can be done by clicking the “Token” link on the same page where your API key is displayed:
-    ![alt text](image.png)
+## Setting up the Mongo DB Database
 
-Once generated please fill these in as your 
-- TRELLO_API_KEY
-- TRELLO_API_TOKEN
-
-You will then need to retrieve the ID of your chosen board and the corresponding done and not done lists to substitute into:
-- TRELLO_BOARD_ID
-- NOT_STARTED_LIST_ID
-- DONE_LIST_ID
+This app uses a Mongo DB database for storing todo items. You will need to set up 
+- A Mongo DB account and database
+- Provide a connection string for connection to that database
 
 ## Running the App
 

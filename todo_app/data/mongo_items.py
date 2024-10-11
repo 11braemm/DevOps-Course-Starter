@@ -1,11 +1,9 @@
 import os
-import dotenv
 from bson import ObjectId
 import pymongo
 
 from todo_app.data.Item import Item
 
-dotenv.load_dotenv()
 
 def get_collection():
     """
